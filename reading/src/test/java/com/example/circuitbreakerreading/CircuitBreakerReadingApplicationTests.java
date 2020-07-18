@@ -52,4 +52,11 @@ public class CircuitBreakerReadingApplicationTests {
 		assertThat(books).isEqualTo("books");
 	}
 
+	@Test
+	public void toReadFailureTest() {
+		this.server.expect(requestTo("http://localhost:8090/recommended")).
+				andExpect(method(HttpMethod.GET)).andRespond(withServerError());
+		String books = testRestTemplate.getForObject("/to-read", String.class);
+		assertThat(books).isEqualTo("Cloud Native Java (O'Reilly)");
+	}
 }
