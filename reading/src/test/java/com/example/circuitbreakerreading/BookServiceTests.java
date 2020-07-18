@@ -31,4 +31,8 @@ public class BookServiceTests {
         assertThat(bookService.readingList()).isEqualTo("books");
     }
 
+    @Test
+    public void reliable() {
+        assertThat(bookService.reliable()).isEqualTo("Cloud Native Java (O'Reilly)");
+    }
 }
